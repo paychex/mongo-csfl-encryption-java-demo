@@ -1,0 +1,8 @@
+# Default ignored files
+/workspace.xml
+/.idea
+/$CACHE_FILE$
+/misc.xml
+/modules.xml
+/mongo-csfl-encryption-java-demo.iml
+/vcs.xml
