@@ -10,7 +10,7 @@ spring:
           name: "dataEncKey"
       kmsprovider: "local"
       encryption:
-        cryptdpath: "/usr/local/bin/mongocryptd"
+        #cryptdpath: "/usr/local/bin/mongocryptd"
         masterKeyPath: "master-key.txt"
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration,org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration

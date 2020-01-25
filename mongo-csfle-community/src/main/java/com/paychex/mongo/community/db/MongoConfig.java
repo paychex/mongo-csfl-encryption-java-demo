@@ -87,7 +87,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 	@Override
 	public MongoClient mongoClient() {
 		kmsHandler.buildOrValidateVault();
-		MongoClient mongoClient = new MongoClientImpl(getMongoClientSettings(),getMongoDriverInfo());  //new MongoClient(new MongoClientURI(DB_CONNECTION))
+		MongoClient mongoClient = new MongoClientImpl(getMongoClientSettings(),getMongoDriverInfo());
 		return mongoClient;
 	}
 

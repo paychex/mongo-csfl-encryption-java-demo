@@ -18,11 +18,9 @@ dependencies {
     compile(
             [
                     'org.mongodb:mongodb-crypt:1.0.0',
-                    //'org.mongodb:mongodb-driver-sync:3.12.0'
             ]
     )
     compile ('org.springframework.boot:spring-boot-starter-data-mongodb'){
-        //exclude group: 'org.mongodb', module: 'mongodb-driver'
     }
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

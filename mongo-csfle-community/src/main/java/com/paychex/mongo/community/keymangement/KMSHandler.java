@@ -61,8 +61,6 @@ public class KMSHandler {
 	private String KEY_NAME;
 	@Value(value = "${spring.data.mongodb.encryption.masterKeyPath}")
 	private String MASTER_KEY_PATH;
-	@Value(value = "${spring.data.mongodb.encryption.cryptdpath}")
-	private String MONGOCRYPTD_PATH;
 
 	private String encryptionKeyBase64;
 	private UUID encryptionKeyUUID;
@@ -75,18 +73,6 @@ public class KMSHandler {
 		return encryptionKeyUUID;
 	}
 
-	public Map<String,Object> getExtraOptsMap(){
-
-		return Stream.of(
-				new AbstractMap.SimpleEntry<>("mongocryptdSpawnPath",MONGOCRYPTD_PATH)
-				// uncomment the following line if you are running mongocryptd manually
-				//      extraOpts.put("mongocryptdBypassSpawn", true);
-		).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
-	}
-
-	public String getEncryptionCollectionName(){
-		return KEY_VAULT_DATABASE+"."+KEY_VAULT_COLLECTION;
-	}
 	public void buildOrValidateVault() {
 
 		if(doesEncryptionKeyExist()){
@@ -104,7 +90,7 @@ public class KMSHandler {
 		logger.debug("DataKeyID [base64]: {}",base64DataKeyId);
 	}
 
-	public boolean doesEncryptionKeyExist(){
+	private boolean doesEncryptionKeyExist(){
 
 		MongoClient mongoClient = MongoClients.create(DB_CONNECTION);
 		MongoCollection<Document> collection = mongoClient.getDatabase(KEY_VAULT_DATABASE).getCollection(KEY_VAULT_COLLECTION);
@@ -141,7 +127,7 @@ public class KMSHandler {
 		return localMasterKey;
 	}
 
-	public Map<String, Map<String, Object>> getKMSMap() {
+	private Map<String, Map<String, Object>> getKMSMap() {
 		Map<String, Object> keyMap = Stream.of(
 				new AbstractMap.SimpleEntry<>("key",getMasterKey())
 		).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
