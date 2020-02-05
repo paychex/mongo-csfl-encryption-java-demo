@@ -1,2 +1,7 @@
 # Default ignored files
 /.idea
+*/build/**
+*/.gradle
+*.log
+*master-key.txt
+*mongocryptd.pid
