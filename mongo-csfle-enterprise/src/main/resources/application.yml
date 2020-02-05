@@ -1,0 +1,25 @@
+spring:
+  data:
+    mongodb:
+      database: test
+      uri: mongodb://localhost:30000
+      key:
+        vault:
+          database: "encryption"
+          collection: "__keyVault"
+          name: "dataEncKey"
+      kmsprovider: "local"
+      encryption:
+        cryptdpath: "/usr/local/bin/mongocryptd"
+        masterKeyPath: "master-key.txt"
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration,org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration,org.springframework.boot.autoconfigure.data.mongo.MongoRepositoriesAutoConfiguration
+logging:
+  level:
+    org.springframework: ERROR
+    com.paychex: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    file: "%d %p %c{1.} [%t] %m%n"
+  file:
+    name: app.log
